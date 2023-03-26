@@ -12,6 +12,10 @@ public class PlayerMov_V2 : MonoBehaviour
     public float jumpForce = 10.0f;
     public float lastY;
     public bool fall= false;
+    public bool shooting = false;
+    public GameObject _projectile;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +40,7 @@ public class PlayerMov_V2 : MonoBehaviour
         
         _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : 1.0f;
 
-        if (grounded && Input.GetButtonDown("Jump")) {
+        if (grounded && Input.GetKeyDown("w")) {
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
         
@@ -44,10 +48,17 @@ public class PlayerMov_V2 : MonoBehaviour
             fall = true;
            
         }else fall = false;
-
         _anim.SetBool("isFalling", fall);*/
         _anim.SetBool("isGrounded", grounded);
         
+        if(grounded && Input.GetKeyDown("space")){
+            _anim.SetBool("isShooting", true);
+            print("space key was pressed");
+
+            Shoot();
+
+        }
+        else{_anim.SetBool("isShooting", false);}
 
 
         //Debug.Log(fall);
@@ -67,6 +78,11 @@ public class PlayerMov_V2 : MonoBehaviour
             Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
             return (hit != null);
         }
+    }
+
+    void Shoot(){
+        GameObject clone;
+        clone = Instantiate(_projectile);
     }
 
 
