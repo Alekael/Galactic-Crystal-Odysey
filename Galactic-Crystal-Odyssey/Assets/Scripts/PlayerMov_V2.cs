@@ -10,7 +10,6 @@ public class PlayerMov_V2 : MonoBehaviour
     private Animator _anim;
     private BoxCollider2D _box;
     public float jumpForce = 10.0f;
-    public float lastY;
     public bool fall= false;
     public bool shooting = false;
     public GameObject _projectile;
@@ -42,7 +41,7 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
         
-        _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : 1.0f;
+        _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : 2.0f;
 
         if (grounded && Input.GetKeyDown("w")) {
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -56,21 +55,16 @@ public class PlayerMov_V2 : MonoBehaviour
         if(grounded && Input.GetKey("space")){
             _anim.SetBool("isShooting", true);
             print("space key was pressed");
-            print("space key was pressed");
             cooldown--;
             if(cooldown < 0){
                 Shoot();
                 cooldown = 90;
             }
 
-        }
-        else{_anim.SetBool("isShooting", false);}
-
-
-        //Debug.Log(fall);
-        lastY = transform.position.y;
+        }else {_anim.SetBool("isShooting", false);}
 
     }
+
     private (Vector2, Vector2) getGroundCheckCorners() {
         Vector3 max = _box.bounds.max;
         Vector3 min = _box.bounds.min;
@@ -78,6 +72,7 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector2 corner2 = new Vector2(min.x, min.y - .2f);
         return (corner1, corner2);
     }
+
     public bool grounded {
         get {
             var (corner1, corner2) = getGroundCheckCorners();
