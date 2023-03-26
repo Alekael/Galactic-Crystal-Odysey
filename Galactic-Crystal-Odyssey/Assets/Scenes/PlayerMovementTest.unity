@@ -427,7 +427,8 @@ MonoBehaviour:
   lastY: 0
   fall: 0
   shooting: 0
-  _projectile: {fileID: 1470007254321964331, guid: 937059f79ad204d4aa802c96b4c244aa, type: 3}
+  _projectile: {fileID: 1281261110121666342, guid: ca1e33e5a72750c4283895d8131f0248, type: 3}
+  firePoint: {fileID: 1526798144}
 --- !u!1 &2025305051
 GameObject:
   m_ObjectHideFlags: 0

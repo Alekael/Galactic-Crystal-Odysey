@@ -14,7 +14,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public bool fall= false;
     public bool shooting = false;
     public GameObject _projectile;
-
+    public Transform firePoint;
 
 
     // Start is called before the first frame update
@@ -23,6 +23,8 @@ public class PlayerMov_V2 : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _box = GetComponent<BoxCollider2D>();
+        firePoint = transform.Find("firePoint");
+
     }
 
     // Update is called once per frame
@@ -81,8 +83,7 @@ public class PlayerMov_V2 : MonoBehaviour
     }
 
     void Shoot(){
-        GameObject clone;
-        clone = Instantiate(_projectile);
+        Instantiate(_projectile, firePoint.position, firePoint.rotation);
     }
 
 
