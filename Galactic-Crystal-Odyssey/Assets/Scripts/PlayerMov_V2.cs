@@ -15,6 +15,8 @@ public class PlayerMov_V2 : MonoBehaviour
     public bool shooting = false;
     public GameObject _projectile;
     public Transform firePoint;
+    private int cooldown = 120;
+
 
 
     // Start is called before the first frame update
@@ -53,11 +55,15 @@ public class PlayerMov_V2 : MonoBehaviour
         _anim.SetBool("isFalling", fall);*/
         _anim.SetBool("isGrounded", grounded);
         
-        if(grounded && Input.GetKeyDown("space")){
+        if(grounded && Input.GetKey("space")){
             _anim.SetBool("isShooting", true);
             print("space key was pressed");
-
-            Shoot();
+            print("space key was pressed");
+            cooldown--;
+            if(cooldown < 0){
+                Shoot();
+                cooldown = 90;
+            }
 
         }
         else{_anim.SetBool("isShooting", false);}
