@@ -48,11 +48,9 @@ public class PlayerMov_V2 : MonoBehaviour
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
         
-        /*if(transform.position.y < lastY){
-            fall = true;
-           
-        }else fall = false;
-        _anim.SetBool("isFalling", fall);*/
+        if(_body.velocity.y < 0){
+            _anim.SetBool("isFalling", true);
+        }else { _anim.SetBool("isFalling", false);}
         _anim.SetBool("isGrounded", grounded);
         
         if(grounded && Input.GetKey("space")){
