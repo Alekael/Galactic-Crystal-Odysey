@@ -119,6 +119,7 @@ MonoBehaviour:
   speed: 7
   point: {fileID: 0}
   timer: 10
+  _bulletDestroy: {fileID: 4624653611659083011, guid: 46f03d39d6f51a842a0b54a4b3fb15b7, type: 3}
 --- !u!50 &-7528051202866319243
 Rigidbody2D:
   serializedVersion: 4

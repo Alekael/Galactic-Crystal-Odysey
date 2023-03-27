@@ -15,7 +15,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public GameObject _projectile;
     public Transform firePoint;
     private int cooldown = 120;
-
+    private AudioSource _audioSorce;
 
 
     // Start is called before the first frame update
@@ -24,6 +24,7 @@ public class PlayerMov_V2 : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _box = GetComponent<BoxCollider2D>();
+        _audioSorce = GetComponent<AudioSource>();
         firePoint = transform.Find("firePoint");
 
     }
@@ -58,7 +59,7 @@ public class PlayerMov_V2 : MonoBehaviour
             cooldown--;
             if(cooldown < 0){
                 Shoot();
-                cooldown = 90;
+                cooldown = 120;
             }
 
         }else {_anim.SetBool("isShooting", false);}
@@ -82,6 +83,7 @@ public class PlayerMov_V2 : MonoBehaviour
     }
 
     void Shoot(){
+        if(_audioSorce != null) _audioSorce.Play();
         Instantiate(_projectile, firePoint.position, firePoint.rotation);
     }
 
