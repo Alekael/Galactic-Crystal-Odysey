@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMov_V2 : MonoBehaviour
 {
 
@@ -16,6 +17,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public Transform firePoint;
     private int cooldown = 120;
     private AudioSource _audioSorce;
+    public int lives = 5;
 
 
     // Start is called before the first frame update
@@ -87,5 +89,9 @@ public class PlayerMov_V2 : MonoBehaviour
         Instantiate(_projectile, firePoint.position, firePoint.rotation);
     }
 
+    public void TakeDamage(int dmg){
+        lives = lives - dmg;
+        Debug.Log("take damage");
+    }
 
 }

@@ -28,9 +28,9 @@ public abstract class Enemy : MonoBehaviour {
     }   
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player") && !sleeping) {
-            var player = other.gameObject.GetComponent<GameEntity>();
+            var player = other.gameObject.GetComponent<PlayerMov_V2>();
             player.TakeDamage(collisionDamage);
-            OnDie();
+            OnHit(2);
         }
     }
 
