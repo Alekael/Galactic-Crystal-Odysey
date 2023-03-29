@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerMov_V2 : MonoBehaviour
 {
@@ -66,6 +66,10 @@ public class PlayerMov_V2 : MonoBehaviour
 
         }else {_anim.SetBool("isShooting", false);}
 
+        if(lives <= 0){
+            SceneManager.LoadScene("Game Over");
+        }
+
     }
 
     private (Vector2, Vector2) getGroundCheckCorners() {
@@ -93,5 +97,7 @@ public class PlayerMov_V2 : MonoBehaviour
         lives = lives - dmg;
         Debug.Log("take damage");
     }
+
+
 
 }

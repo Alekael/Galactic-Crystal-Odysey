@@ -8,5 +8,6 @@ public class lavaFall : MonoBehaviour
    
     private void OnCollisionEnter2D(Collision2D col){
         col.transform.position = tp.transform.position;
+        col.gameObject.GetComponent<PlayerMov_V2>().TakeDamage(1);
     }     
 }
