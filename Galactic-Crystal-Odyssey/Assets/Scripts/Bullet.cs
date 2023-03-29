@@ -55,9 +55,9 @@ public class Bullet : MonoBehaviour
              if (hit != null) {
                  hit.TakeDamage(damage);
             }
-        Die();
-        }
         
+        }
+       Die(); 
 }
 
     private void Die() {
