@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class BreakWall : MonoBehaviour
 {
-    //public GameObject breakableWall;
-    
+    public Sprite texture;
+    public int i = 0;
 
     private void OnCollisionEnter2D(Collision2D col){
-        //Instantiate(breakableWall, transform.position, transform.rotation);
-        if(col.gameObject.tag == "Bullet")
-        Destroy(gameObject);
-    }
+        if(col.gameObject.tag == "Bullet" && i >= 1){
+            Destroy(gameObject);
+            Debug.Log("wall break");
+
+        }
+        if(col.gameObject.tag == "Bullet" && i < 1){
+            gameObject.GetComponent<SpriteRenderer>().sprite = texture;
+            i++;
+            Debug.Log(i);
+        }
+        
+    }       
 }
