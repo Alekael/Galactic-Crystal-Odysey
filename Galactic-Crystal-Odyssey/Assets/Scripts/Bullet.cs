@@ -10,6 +10,10 @@ public class Bullet : MonoBehaviour
     public float timer = 5;
     public GameObject _bulletDestroy;
 
+
+    public int damage;
+    public string damageOnlyToTag;
+
     void Start(){
         point = GameObject.Find("player");
         if(point != null) print ("found player");
@@ -31,7 +35,32 @@ public class Bullet : MonoBehaviour
         if(timer < 0.0f) Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D col){
+  /*  private void OnCollisionEnter2D(Collision2D col){
+        if (damageOnlyToTag == "" || col.CompareTag(damageOnlyToTag)) {
+            GameEntity hit = col.gameObject.GetComponentInParent<GameEntity>();
+        if (hit != null) {
+            hit.TakeDamage(damage);
+        }
+        Die();
+}
+        
+        Instantiate(_bulletDestroy, transform.position, transform.rotation);
+        Destroy(gameObject);
+        Debug.Log("bulletDestroy");
+
+    }*/
+    void OnTriggerEnter2D(Collider2D other) {
+        if (damageOnlyToTag == "" || other.CompareTag(damageOnlyToTag)) {
+            GameEntity hit = other.gameObject.GetComponentInParent<GameEntity>();
+             if (hit != null) {
+                 hit.TakeDamage(damage);
+            }
+        Die();
+        }
+        
+}
+
+    private void Die() {
         Instantiate(_bulletDestroy, transform.position, transform.rotation);
         Destroy(gameObject);
         Debug.Log("bulletDestroy");
