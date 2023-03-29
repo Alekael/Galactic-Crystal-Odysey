@@ -8,6 +8,7 @@ public class flyEye : Enemy {
     private Rigidbody2D rb2d;
     public float speed;
     private Animator anim;
+  
 
     protected override void OnWake() {
         rb2d = GetComponent<Rigidbody2D>();
