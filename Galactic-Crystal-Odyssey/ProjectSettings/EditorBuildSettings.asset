@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: "Assets/Scenes/Dise\xF1oNivelTest.unity"
+    guid: 2f9e2077ab6c7a54c9f85121f13824e8
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: a7bc44348a2576f4ba9fdf5ee11e766f
   m_configObjects: {}
