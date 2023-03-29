@@ -15,7 +15,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public bool shooting = false;
     public GameObject _projectile;
     public Transform firePoint;
-    private int cooldown = 100;
+    private int cooldown = 120;
     private AudioSource _audioSorce;
     public int lives = 5;
 
@@ -61,7 +61,7 @@ public class PlayerMov_V2 : MonoBehaviour
             cooldown--;
             if(cooldown < 0){
                 Shoot();
-                cooldown = 100;
+                cooldown = 120;
             }
 
         }else {_anim.SetBool("isShooting", false);}

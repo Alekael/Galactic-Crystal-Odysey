@@ -132,7 +132,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5441024310741244157, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
       propertyPath: atDmg
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5441024310741244157, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5441024310741244157, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
+      propertyPath: Atacking
+      value: 
+      objectReference: {fileID: 2106606148}
+    - target: {fileID: 5441024310741244157, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
+      propertyPath: collisionDamage
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7198002449366193533, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
       propertyPath: m_Name
@@ -18150,6 +18162,11 @@ AudioSource:
 --- !u!4 &2106606145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2491631120028588175, guid: 9e3f6efb3f02abe4bb7e28bdce8b5495, type: 3}
+  m_PrefabInstance: {fileID: 1036392776}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &2106606148 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2491631120028588163, guid: 9e3f6efb3f02abe4bb7e28bdce8b5495, type: 3}
   m_PrefabInstance: {fileID: 1036392776}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4964269664051187676

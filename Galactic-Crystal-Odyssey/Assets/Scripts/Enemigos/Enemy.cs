@@ -30,7 +30,7 @@ public abstract class Enemy : MonoBehaviour {
     void Atacks(){
         if (Atacking.CompareTag("Player") && !sleeping) {
             var player = Atacking.gameObject.GetComponent<PlayerMov_V2>();
-            player.TakeDamage(atDmg);
+            player.UpdateHealth(atDmg);
             }
 
 
@@ -39,7 +39,7 @@ public abstract class Enemy : MonoBehaviour {
         Atacking=other;
         if (other.CompareTag("Player") && !sleeping) {
             var player = other.gameObject.GetComponent<PlayerMov_V2>();
-            player.TakeDamage(collisionDamage);
+            player.UpdateHealth(collisionDamage);
             
         }
     }
