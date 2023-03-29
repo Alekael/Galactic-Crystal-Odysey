@@ -72,7 +72,7 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector3 max = _box.bounds.max;
         Vector3 min = _box.bounds.min;
         Vector2 corner1 = new Vector2(max.x - .1f, min.y - .1f);
-        Vector2 corner2 = new Vector2(min.x - .1f, min.y - .2f);
+        Vector2 corner2 = new Vector2(min.x + .1f, min.y - .2f);
         return (corner1, corner2);
     }
 
