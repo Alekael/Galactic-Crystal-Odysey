@@ -89,7 +89,7 @@ public class PlayerMov_V2 : MonoBehaviour
     }
 
     public void TakeDamage(int dmg){
-        lives -= dmg;
+        lives = lives - dmg;
         Debug.Log("take damage");
     }
 
