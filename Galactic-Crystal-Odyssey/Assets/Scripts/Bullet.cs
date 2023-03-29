@@ -35,20 +35,15 @@ public class Bullet : MonoBehaviour
         if(timer < 0.0f) Destroy(gameObject);
     }
 
-  /*  private void OnCollisionEnter2D(Collision2D col){
-        if (damageOnlyToTag == "" || col.CompareTag(damageOnlyToTag)) {
-            GameEntity hit = col.gameObject.GetComponentInParent<GameEntity>();
-        if (hit != null) {
-            hit.TakeDamage(damage);
-        }
-        Die();
-}
-        
+    private void OnCollisionEnter2D(Collision2D col){
         Instantiate(_bulletDestroy, transform.position, transform.rotation);
         Destroy(gameObject);
         Debug.Log("bulletDestroy");
 
-    }*/
+    }
+        
+       
+    
     void OnTriggerEnter2D(Collider2D other) {
         if (damageOnlyToTag == "" || other.CompareTag(damageOnlyToTag)) {
             GameEntity hit = other.gameObject.GetComponentInParent<GameEntity>();
@@ -58,7 +53,7 @@ public class Bullet : MonoBehaviour
         
         }
        Die(); 
-}
+    }
 
     private void Die() {
         Instantiate(_bulletDestroy, transform.position, transform.rotation);
