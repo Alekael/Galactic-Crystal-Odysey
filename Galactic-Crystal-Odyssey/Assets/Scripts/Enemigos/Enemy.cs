@@ -39,13 +39,8 @@ public abstract class Enemy : MonoBehaviour {
         Atacking=other;
         if (other.CompareTag("Player") && !sleeping) {
             var player = other.gameObject.GetComponent<PlayerMov_V2>();
-<<<<<<< HEAD
-            player.UpdateHealth(collisionDamage);
-            OnHit(2);
-=======
             player.TakeDamage(collisionDamage);
             
->>>>>>> 7375bc6abe818ece649ca991d5b32a01ca401f3b
         }
     }
 
