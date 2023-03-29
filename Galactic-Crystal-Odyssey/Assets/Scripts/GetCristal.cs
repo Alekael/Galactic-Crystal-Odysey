@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GetCristal : MonoBehaviour
 {
      private void OnCollisionEnter2D(Collision2D col){
-       SceneManager.LoadScene("Game Over");
+      if(col.gameObject.tag == "Player"){
+        SceneManager.LoadScene("Game Over");
+      }
     }  
 }

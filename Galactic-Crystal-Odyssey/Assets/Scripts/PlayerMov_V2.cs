@@ -15,7 +15,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public bool shooting = false;
     public GameObject _projectile;
     public Transform firePoint;
-    private int cooldown = 120;
+    private int cooldown = 100;
     private AudioSource _audioSorce;
     public int lives = 5;
 
@@ -61,7 +61,7 @@ public class PlayerMov_V2 : MonoBehaviour
             cooldown--;
             if(cooldown < 0){
                 Shoot();
-                cooldown = 120;
+                cooldown = 100;
             }
 
         }else {_anim.SetBool("isShooting", false);}
@@ -93,11 +93,21 @@ public class PlayerMov_V2 : MonoBehaviour
         Instantiate(_projectile, firePoint.position, firePoint.rotation);
     }
 
-    public void TakeDamage(int dmg){
-        lives = lives - dmg;
-        Debug.Log("take damage");
+    public void UpdateHealth(int dmg){
+        lives = lives + dmg;
+        Debug.Log("lives updated: " + lives);
     }
 
+    void OnTriggerEnter2D(Collider2D other){
+        if (other.CompareTag("CanBePickedUp")) {
+            Item item = other.gameObject.GetComponent<Consumable>().item;
+            if(item != null){
+                
+                UpdateHealth(item.quantity);
+                other.gameObject.SetActive(false);
+            }
+        }
+    }
 
 
 }
