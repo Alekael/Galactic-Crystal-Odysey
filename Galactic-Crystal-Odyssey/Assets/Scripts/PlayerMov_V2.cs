@@ -95,18 +95,22 @@ public class PlayerMov_V2 : MonoBehaviour
 
     public void UpdateHealth(int dmg){
         lives = lives + dmg;
+        GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
         Debug.Log("lives updated: " + lives);
     }
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.CompareTag("CanBePickedUp")) {
             Item item = other.gameObject.GetComponent<Consumable>().item;
-            if(item != null){
-                
+            if(item != null){                
                 UpdateHealth(item.quantity);
                 other.gameObject.SetActive(false);
             }
         }
+    }
+
+    public int getLives(){
+        return lives;
     }
 
 
