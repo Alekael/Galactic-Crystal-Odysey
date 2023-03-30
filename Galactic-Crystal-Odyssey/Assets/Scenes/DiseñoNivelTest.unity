@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5441024310741244157, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
       propertyPath: atDmg
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5441024310741244157, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
       propertyPath: speed
@@ -143,8 +143,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2106606148}
     - target: {fileID: 5441024310741244157, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
+      propertyPath: maxRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5441024310741244157, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
       propertyPath: collisionDamage
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7198002449366193533, guid: 47b54364ec89ff14bb5276ff7dcef0b8, type: 3}
       propertyPath: m_Name
