@@ -15,7 +15,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public bool shooting = false;
     public GameObject _projectile;
     public Transform firePoint;
-    private int cooldown = 120;
+    private float cooldown = 0.5f;
     private AudioSource _audioSorce;
     public int lives = 5;
 
@@ -58,13 +58,13 @@ public class PlayerMov_V2 : MonoBehaviour
         if(grounded && Input.GetKey("space")){
             _anim.SetBool("isShooting", true);
             print("space key was pressed");
-            cooldown--;
+            cooldown -= Time.deltaTime;
             if(cooldown < 0){
                 Shoot();
-                cooldown = 120;
+                cooldown = 0.5f;
             }
 
-        }else {_anim.SetBool("isShooting", false);}
+        }else {_anim.SetBool("isShooting", false); cooldown = 0.5f;}
 
         if(lives <= 0){
             SceneManager.LoadScene("Game Over");
