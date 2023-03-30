@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour {
     protected abstract void OnDie();
     protected abstract void OnHit(int damage);
     public Collider2D Atacking;
+    public float maxRange;
 
     public bool sleeping {
         get { return !lifetime.enabled; }
@@ -28,7 +29,8 @@ public abstract class Enemy : MonoBehaviour {
         lifetime.OnDieEvent -= OnDie;
     }
     void Atacks(){
-        if (Atacking.CompareTag("Player") && !sleeping) {
+        var heading = this.transform.position - Atacking.gameObject.transform.position;
+        if (Atacking.CompareTag("Player") && !sleeping&&heading.sqrMagnitude < maxRange * maxRange) {
             var player = Atacking.gameObject.GetComponent<PlayerMov_V2>();
             player.UpdateHealth(atDmg);
             }
@@ -38,7 +40,7 @@ public abstract class Enemy : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         Atacking=other;
         if (other.CompareTag("Player") && !sleeping) {
-            var player = other.gameObject.GetComponent<PlayerMov_V2>();
+            var  player = other.gameObject.GetComponent<PlayerMov_V2>();
             player.UpdateHealth(collisionDamage);
             
         }
