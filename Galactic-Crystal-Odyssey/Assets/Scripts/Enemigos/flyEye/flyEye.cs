@@ -8,6 +8,7 @@ public class flyEye : Enemy {
     private Rigidbody2D rb2d;
     public float speed;
     private Animator anim;
+    private SpriteRenderer _renderer;
   
 
     protected override void OnWake() {
@@ -18,12 +19,31 @@ public class flyEye : Enemy {
             Debug.LogError("Cannot find the player");
         }
         anim = GetComponent<Animator>();
+        _renderer = GetComponent<SpriteRenderer>();
+
+        if (_renderer == null){
+        Debug.LogError("Sprite is missing a renderer");
+        }
     }
 
     void Update() {
         if (sleeping || player == null) return;
             Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
             rb2d.velocity = direction * speed;
+             
+ 
+        //We use aTan2 since it handles negative numbers and division by zero errors. 
+        float angle = Mathf.Atan2(direction.y, direction.x);
+ 
+        //Now we set our new rotation. 
+        //transform.rotation = Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg);
+
+        if ( direction.x < 0){
+        _renderer.flipX = false;
+        }
+        else if (direction.x > 0){
+        _renderer.flipX = true;
+        } 
         }
 
         protected override void OnHit(int damage) {
