@@ -30,13 +30,7 @@ public class flyEye : Enemy {
         if (sleeping || player == null) return;
             Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
             rb2d.velocity = direction * speed;
-             
- 
-        //We use aTan2 since it handles negative numbers and division by zero errors. 
-        float angle = Mathf.Atan2(direction.y, direction.x);
- 
-        //Now we set our new rotation. 
-        //transform.rotation = Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg);
+          
 
         if ( direction.x < 0){
         _renderer.flipX = false;

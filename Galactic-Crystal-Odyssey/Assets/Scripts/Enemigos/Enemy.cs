@@ -30,7 +30,7 @@ public abstract class Enemy : MonoBehaviour {
     }
     void Atacks(){
         var heading = this.transform.position - Atacking.gameObject.transform.position;
-        if (Atacking.CompareTag("Player") && !sleeping&&heading.sqrMagnitude < maxRange * maxRange) {
+        if (Atacking.CompareTag("Player") && !sleeping && heading.sqrMagnitude < maxRange * maxRange) {
             var player = Atacking.gameObject.GetComponent<PlayerMov_V2>();
             player.UpdateHealth(atDmg);
             }
@@ -38,8 +38,10 @@ public abstract class Enemy : MonoBehaviour {
 
     }
     void OnTriggerEnter2D(Collider2D other) {
-        Atacking=other;
+
+        
         if (other.CompareTag("Player") && !sleeping) {
+            Atacking=other;
             var  player = other.gameObject.GetComponent<PlayerMov_V2>();
             player.UpdateHealth(collisionDamage);
             
