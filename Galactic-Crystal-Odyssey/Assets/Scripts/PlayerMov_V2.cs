@@ -17,6 +17,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public Transform firePoint;
     private float cooldown = 0.5f;
     private AudioSource _audioSorce;
+    private SpriteRenderer _renderer;
     public int lives = 5;
 
 
@@ -27,6 +28,7 @@ public class PlayerMov_V2 : MonoBehaviour
         _anim = GetComponent<Animator>();
         _box = GetComponent<BoxCollider2D>();
         _audioSorce = GetComponent<AudioSource>();
+        _renderer = GetComponent<SpriteRenderer>();
         firePoint = transform.Find("firePoint");
 
     }
@@ -69,7 +71,6 @@ public class PlayerMov_V2 : MonoBehaviour
         if(lives <= 0){
             SceneManager.LoadScene("Game Over");
         }
-
     }
 
     private (Vector2, Vector2) getGroundCheckCorners() {
@@ -94,6 +95,9 @@ public class PlayerMov_V2 : MonoBehaviour
     }
 
     public void UpdateHealth(int dmg){
+        /*if(dmg < 0){
+            _renderer.color = Color.red;
+        }*/
         lives = lives + dmg;
         GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
         Debug.Log("lives updated: " + lives);
