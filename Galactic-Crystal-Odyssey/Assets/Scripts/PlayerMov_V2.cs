@@ -104,7 +104,7 @@ public class PlayerMov_V2 : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("CanBePickedUp")) {
+        if (other.CompareTag("CanBePickedUp") && lives < 5) {
             Item item = other.gameObject.GetComponent<Consumable>().item;
             if(item != null){                
                 UpdateHealth(item.quantity);
