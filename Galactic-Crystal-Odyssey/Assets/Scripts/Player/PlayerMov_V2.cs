@@ -11,6 +11,8 @@ public class PlayerMov_V2 : MonoBehaviour
     private Animator _anim;
     private BoxCollider2D _box;
     public float jumpForce = 10.0f;
+    public float downForce = 4f;
+    private float gravity = 2f;
     public bool fall= false;
     public bool shooting = false;
     public GameObject _projectile;
@@ -37,20 +39,6 @@ public class PlayerMov_V2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey("space")){
-            _anim.SetBool("isShooting", true);
-            print("space key was pressed");
-            if(cooldown <= 0){
-                //Shoot();
-                print("shoot");
-                if(_audioSorce != null) _audioSorce.Play();
-                Instantiate(_projectile, firePoint.position, firePoint.rotation);        
-                cooldown = timer;
-            }
-            cooldown -= Time.deltaTime;
-
-
-        }else {_anim.SetBool("isShooting", false); cooldown = 0f;}
 
         float deltaX = Input.GetAxis("Horizontal") * speed;
     
@@ -62,8 +50,12 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
         
-        _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : 2.0f;
+        _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : gravity;
 
+        if(_body.velocity.y < 0 && gravity < 6f){ gravity += downForce; } 
+        else { gravity = 2f;}
+
+        
         if (grounded && Input.GetKeyDown("w")) {
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -73,6 +65,16 @@ public class PlayerMov_V2 : MonoBehaviour
         }else { _anim.SetBool("isFalling", false);}
         _anim.SetBool("isGrounded", grounded);
         
+        if(Input.GetKey("space")){
+            _anim.SetBool("isShooting", true);
+            print("space key was pressed");
+            if(cooldown <= 0){
+                Shoot();
+            }
+            cooldown -= Time.deltaTime;
+        }else {_anim.SetBool("isShooting", false); if(cooldown > 0f){ cooldown -= Time.deltaTime;} else{cooldown = 0f;}}
+
+
 
         if(lives <= 0){
             SceneManager.LoadScene("Game Over");
@@ -95,12 +97,12 @@ public class PlayerMov_V2 : MonoBehaviour
         }
     }
 
-    /*void Shoot(){
+    void Shoot(){
         print("shoot");
         if(_audioSorce != null) _audioSorce.Play();
         Instantiate(_projectile, firePoint.position, firePoint.rotation);        
         cooldown = timer;
-    }*/
+    }
 
     public void UpdateHealth(int dmg){
         /*if(dmg < 0){
