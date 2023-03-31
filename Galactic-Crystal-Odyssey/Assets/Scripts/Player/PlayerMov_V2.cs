@@ -11,8 +11,9 @@ public class PlayerMov_V2 : MonoBehaviour
     private Animator _anim;
     private BoxCollider2D _box;
     public float jumpForce = 10.0f;
+    public float baseDownForce = 2f;
     public float downForce = 4f;
-    private float gravity = 2f;
+    public float maxDownForce = 4f;
     public bool fall= false;
     public bool shooting = false;
     public GameObject _projectile;
@@ -50,10 +51,10 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
         
-        _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : gravity;
+        _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : baseDownForce;
 
-        if(_body.velocity.y < 0 && gravity < 6f){ gravity += downForce; } 
-        else { gravity = 2f;}
+        if(_body.velocity.y < 0 && baseDownForce < maxDownForce){ baseDownForce += downForce * Time.deltaTime; print(baseDownForce); } 
+        else { baseDownForce = 2f;}
 
         
         if (grounded && Input.GetKeyDown("w")) {
@@ -67,7 +68,7 @@ public class PlayerMov_V2 : MonoBehaviour
         
         if(Input.GetKey("space")){
             _anim.SetBool("isShooting", true);
-            print("space key was pressed");
+            //print("space key was pressed");
             if(cooldown <= 0){
                 Shoot();
             }
