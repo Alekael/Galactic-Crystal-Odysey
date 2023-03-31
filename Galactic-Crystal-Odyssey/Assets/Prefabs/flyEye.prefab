@@ -148,7 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db899544f8c78e44c81c58845457b0e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionDamage: 2
+  collisionDamage: 0
+  atDmg: 1
+  Atacking: {fileID: 0}
+  maxRange: 1
   speed: 5
 --- !u!114 &5441024310741244159
 MonoBehaviour:
