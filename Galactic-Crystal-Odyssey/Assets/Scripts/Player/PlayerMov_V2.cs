@@ -15,7 +15,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public bool shooting = false;
     public GameObject _projectile;
     public Transform firePoint;
-    private float cooldown = 0f;
+    public float cooldown = 0f;
     public float timer = 0.5f;
     private AudioSource _audioSorce;
     private SpriteRenderer _renderer;
@@ -37,6 +37,21 @@ public class PlayerMov_V2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey("space")){
+            _anim.SetBool("isShooting", true);
+            print("space key was pressed");
+            if(cooldown <= 0){
+                //Shoot();
+                print("shoot");
+                if(_audioSorce != null) _audioSorce.Play();
+                Instantiate(_projectile, firePoint.position, firePoint.rotation);        
+                cooldown = timer;
+            }
+            cooldown -= Time.deltaTime;
+
+
+        }else {_anim.SetBool("isShooting", false); cooldown = 0f;}
+
         float deltaX = Input.GetAxis("Horizontal") * speed;
     
         if(!Mathf.Approximately(deltaX,0f)){
@@ -58,17 +73,6 @@ public class PlayerMov_V2 : MonoBehaviour
         }else { _anim.SetBool("isFalling", false);}
         _anim.SetBool("isGrounded", grounded);
         
-        if(Input.GetKey("space")){
-            _anim.SetBool("isShooting", true);
-            print("space key was pressed");
-            if(cooldown <= 0){
-                Shoot();
-                cooldown = timer;
-            }
-            cooldown -= Time.deltaTime;
-
-
-        }else {_anim.SetBool("isShooting", false); cooldown = 0.5f;}
 
         if(lives <= 0){
             SceneManager.LoadScene("Game Over");
@@ -91,10 +95,12 @@ public class PlayerMov_V2 : MonoBehaviour
         }
     }
 
-    void Shoot(){
+    /*void Shoot(){
+        print("shoot");
         if(_audioSorce != null) _audioSorce.Play();
-        Instantiate(_projectile, firePoint.position, firePoint.rotation);
-    }
+        Instantiate(_projectile, firePoint.position, firePoint.rotation);        
+        cooldown = timer;
+    }*/
 
     public void UpdateHealth(int dmg){
         /*if(dmg < 0){

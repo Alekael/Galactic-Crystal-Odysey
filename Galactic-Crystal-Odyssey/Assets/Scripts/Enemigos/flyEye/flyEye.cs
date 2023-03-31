@@ -27,7 +27,7 @@ public class flyEye : Enemy {
     }
 
     void Update() {
-        var heading = this.transform.position - player.transform.position;
+        var heading = gameObject.transform.position - player.transform.position;
         Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
         if (sleeping || player == null) return;
         if(heading.sqrMagnitude < maxRange/2 * maxRange/2) {
