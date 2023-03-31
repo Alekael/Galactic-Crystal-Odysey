@@ -27,9 +27,16 @@ public class flyEye : Enemy {
     }
 
     void Update() {
+        var heading = this.transform.position - player.transform.position;
+        Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
         if (sleeping || player == null) return;
-            Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
+        if(heading.sqrMagnitude < maxRange/2 * maxRange/2) {
+            rb2d.velocity = direction * 0;
+            return;
+            }
             rb2d.velocity = direction * speed;
+            
+            
           
 
         if ( direction.x < 0){
@@ -41,12 +48,12 @@ public class flyEye : Enemy {
         }
 
         protected override void OnHit(int damage) {
-            Debug.Log("Kamikaze hit");
+            Debug.Log("flyEye hit");
             anim.SetTrigger("Hit");
         }
 
         protected override void OnDie() {
-            Debug.Log("Kamikaze dies");
+            Debug.Log("flyEye dies");
             
             anim.SetTrigger("Die");
 
