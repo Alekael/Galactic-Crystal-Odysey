@@ -61,7 +61,7 @@ public class PlayerMov_V2 : MonoBehaviour
         if(Input.GetKey("space")){
             _anim.SetBool("isShooting", true);
             print("space key was pressed");
-            if(cooldown < 0){
+            if(cooldown <= 0){
                 Shoot();
                 cooldown = timer;
             }
