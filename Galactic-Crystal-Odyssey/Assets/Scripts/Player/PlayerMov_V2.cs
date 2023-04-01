@@ -16,8 +16,8 @@ public class PlayerMov_V2 : MonoBehaviour
     public float downForce = 4f;
     public float maxDownForce = 4f;
     public bool fall= false;
-    public bool shooting = false;
     public GameObject _projectile;
+    public GameObject _projectileDMG;
     public Transform firePoint;
     public float cooldown = 0f;
     public float timer = 0.5f;
@@ -76,7 +76,7 @@ public class PlayerMov_V2 : MonoBehaviour
             }
             cooldown -= Time.deltaTime;
         }else {_anim.SetBool("isShooting", false); if(cooldown > 0f){ cooldown -= Time.deltaTime;} else{cooldown = 0f;}}
-
+        
 
 
         if(lives <= 0){
@@ -110,24 +110,33 @@ public class PlayerMov_V2 : MonoBehaviour
     }
 
     public void UpdateHealth(int dmg){
-        /*if(dmg < 0){
+        if(dmg < 0){
             _renderer.color = Color.red;
-        }*/
+        }
         lives = lives + dmg;
         GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
         Debug.Log("lives updated: " + lives);
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("CanBePickedUp") && lives < 5) {
+        if (other.CompareTag("CanBePickedUp")) {
             Item item = other.gameObject.GetComponent<Consumable>().item;
-            if(item != null){                
-                UpdateHealth(item.quantity);
-                other.gameObject.SetActive(false);
+            if(item != null){
+                switch(item.itemType){ 
+                    case Item.ItemType.HEALTH: 
+                        if(lives < 5){          
+                            UpdateHealth(item.quantity);
+                            other.gameObject.SetActive(false);
+                        }break;  
+
+                    case Item.ItemType.DAMAGE:
+                        _projectile = _projectileDMG; 
+                        other.gameObject.SetActive(false); 
+                        break;            
+                }
             }
         }
     }
-
     public int getLives(){
         return lives;
     }

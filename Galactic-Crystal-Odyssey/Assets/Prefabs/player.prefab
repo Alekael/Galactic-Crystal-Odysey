@@ -218,10 +218,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.5
   jumpForce: 10
+  baseDownForce: 2
+  downForce: 4
+  maxDownForce: 4
   fall: 0
-  shooting: 0
   _projectile: {fileID: 1281261110121666342, guid: ca1e33e5a72750c4283895d8131f0248, type: 3}
+  _projectileDMG: {fileID: 0}
   firePoint: {fileID: 2491631119905368560}
+  cooldown: 0
+  timer: 0.5
   lives: 5
 --- !u!82 &-6761763747122048818
 AudioSource:
