@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerMov_V2 : MonoBehaviour
 {
 
@@ -60,10 +61,11 @@ public class PlayerMov_V2 : MonoBehaviour
         if (grounded && Input.GetKeyDown("w")) {
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-        
+             
         if(_body.velocity.y < 0){
             _anim.SetBool("isFalling", true);
         }else { _anim.SetBool("isFalling", false);}
+
         _anim.SetBool("isGrounded", grounded);
         
         if(Input.GetKey("space")){
@@ -86,7 +88,8 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector3 max = _box.bounds.max;
         Vector3 min = _box.bounds.min;
         Vector2 corner1 = new Vector2(max.x - .1f, min.y - .1f);
-        Vector2 corner2 = new Vector2(min.x + .1f, min.y - .2f);
+        Vector2 corner2 = new Vector2(min.x + .1f, min.y - .1f);
+
         return (corner1, corner2);
     }
 
@@ -94,6 +97,7 @@ public class PlayerMov_V2 : MonoBehaviour
         get {
             var (corner1, corner2) = getGroundCheckCorners();
             Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
+
             return (hit != null);
         }
     }
@@ -128,5 +132,14 @@ public class PlayerMov_V2 : MonoBehaviour
         return lives;
     }
 
+    void OnDrawGizmosSelected(){
+        Vector3 max = _box.bounds.max;
+        Vector3 min = _box.bounds.min;
+        Vector2 corner1 = new Vector2(max.x - .1f, min.y - 0.1f);
+        Vector2 corner2 = new Vector2(min.x + .1f, min.y - 0.1f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(corner1, corner2);
+    }
 
 }
