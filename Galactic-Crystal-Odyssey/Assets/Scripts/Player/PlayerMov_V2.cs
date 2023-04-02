@@ -54,7 +54,7 @@ public class PlayerMov_V2 : MonoBehaviour
         
         _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : baseDownForce;
 
-        if(_body.velocity.y < 0 && baseDownForce < maxDownForce){ baseDownForce += downForce * Time.deltaTime; print(baseDownForce); } 
+        if(_body.velocity.y < 0 && baseDownForce < maxDownForce){ baseDownForce += downForce * Time.deltaTime; /*print(baseDownForce);*/ } 
         else { baseDownForce = 2f;}
 
         
@@ -103,7 +103,7 @@ public class PlayerMov_V2 : MonoBehaviour
     }
 
     void Shoot(){
-        print("shoot");
+        //print("shoot");
         if(_audioSorce != null) _audioSorce.Play();
         Instantiate(_projectile, firePoint.position, firePoint.rotation);        
         cooldown = timer;
@@ -115,7 +115,7 @@ public class PlayerMov_V2 : MonoBehaviour
         }
         lives = lives + dmg;
         GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
-        Debug.Log("lives updated: " + lives);
+        //Debug.Log("lives updated: " + lives);
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -130,7 +130,7 @@ public class PlayerMov_V2 : MonoBehaviour
                         }break;  
 
                     case Item.ItemType.DAMAGE:
-                        _projectile = _projectileDMG; 
+                        ActivateDamageBoost(item.quantity);
                         other.gameObject.SetActive(false); 
                         break;            
                 }
@@ -151,4 +151,19 @@ public class PlayerMov_V2 : MonoBehaviour
         Gizmos.DrawLine(corner1, corner2);
     }
 
+    void ActivateDamageBoost(int countdown){    
+        GameObject aux = _projectile;
+        _projectile = _projectileDMG;
+        _projectileDMG = aux;
+        StartCoroutine(DamageBoostCountdown(countdown));
+    }
+
+    IEnumerator DamageBoostCountdown(int countdown){
+        print("time start");
+        yield return new WaitForSeconds(countdown);
+        print("time end");
+        GameObject aux = _projectile;
+        _projectile = _projectileDMG;
+        _projectileDMG = aux;
+    }
 }

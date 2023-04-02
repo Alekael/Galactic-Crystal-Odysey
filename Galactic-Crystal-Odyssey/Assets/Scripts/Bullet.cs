@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     void Start(){
         point = GameObject.Find("player");
-        if(point != null) print ("found player");
+        //if(point != null) print ("found player");
         //this.transform.rotation = point.transform.rotation;
         if (point.transform.localScale.x > 0) { 
             direction = -1;
@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col){
         Instantiate(_bulletDestroy, transform.position, transform.rotation);
         Destroy(gameObject);
-        Debug.Log("bulletDestroy");
+        //Debug.Log("bulletDestroy");
 
     }
         
@@ -58,6 +58,6 @@ public class Bullet : MonoBehaviour
     private void Die() {
         Instantiate(_bulletDestroy, transform.position, transform.rotation);
         Destroy(gameObject);
-        Debug.Log("bulletDestroy");
+        //Debug.Log("bulletDestroy");
     }
 }
