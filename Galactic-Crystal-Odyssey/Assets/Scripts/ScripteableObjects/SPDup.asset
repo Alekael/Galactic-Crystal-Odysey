@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6252f5a058ee27b45980ee023c88c6b9, type: 3}
-  m_Name: DMGup
+  m_Name: SPDup
   m_EditorClassIdentifier: 
-  objectName: DMGup
+  objectName: SPDup
   sprite: {fileID: 0}
   quantity: 15
   stackable: 0
-  itemType: 0
-  id: 1
+  itemType: 1
+  id: 2

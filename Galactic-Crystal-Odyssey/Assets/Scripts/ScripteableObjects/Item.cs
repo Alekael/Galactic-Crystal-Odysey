@@ -12,4 +12,5 @@ public class Item : ScriptableObject
     public bool stackable;
     public enum ItemType {DAMAGE, SPEED, HEALTH};
     public ItemType itemType;
+    public int id;
 }

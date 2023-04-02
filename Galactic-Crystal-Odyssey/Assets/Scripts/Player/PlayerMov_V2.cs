@@ -17,11 +17,11 @@ public class PlayerMov_V2 : MonoBehaviour
     public float maxDownForce = 4f;
     public bool fall= false;
     public GameObject _projectile;
-    public GameObject _projectileDMG;
+    public List<GameObject> _projectileList;
     public Transform firePoint;
     public float cooldown = 0f;
     public float timer = 0.5f;
-    private AudioSource _audioSorce;
+    private AudioSource _audioSource;
     private SpriteRenderer _renderer;
     public int lives = 5;
 
@@ -32,7 +32,7 @@ public class PlayerMov_V2 : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _box = GetComponent<BoxCollider2D>();
-        _audioSorce = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         _renderer = GetComponent<SpriteRenderer>();
         firePoint = transform.Find("firePoint");
 
@@ -104,7 +104,7 @@ public class PlayerMov_V2 : MonoBehaviour
 
     void Shoot(){
         //print("shoot");
-        if(_audioSorce != null) _audioSorce.Play();
+        if(_audioSource != null) _audioSource.Play();
         Instantiate(_projectile, firePoint.position, firePoint.rotation);        
         cooldown = timer;
     }
@@ -130,7 +130,12 @@ public class PlayerMov_V2 : MonoBehaviour
                         }break;  
 
                     case Item.ItemType.DAMAGE:
-                        ActivateDamageBoost(item.quantity);
+                        ProjectileSwap(item.quantity, item.id);
+                        other.gameObject.SetActive(false); 
+                        break;
+
+                    case Item.ItemType.SPEED:
+                        ProjectileSwap(item.quantity, item.id);
                         other.gameObject.SetActive(false); 
                         break;            
                 }
@@ -151,19 +156,15 @@ public class PlayerMov_V2 : MonoBehaviour
         Gizmos.DrawLine(corner1, corner2);
     }
 
-    void ActivateDamageBoost(int countdown){    
-        GameObject aux = _projectile;
-        _projectile = _projectileDMG;
-        _projectileDMG = aux;
+    void ProjectileSwap(int countdown, int pos){    
+        _projectile = _projectileList[pos];
+        _audioSource.clip = _projectileList[pos].GetComponent<AudioSource>().clip;
         StartCoroutine(DamageBoostCountdown(countdown));
     }
 
     IEnumerator DamageBoostCountdown(int countdown){
-        print("time start");
         yield return new WaitForSeconds(countdown);
-        print("time end");
-        GameObject aux = _projectile;
-        _projectile = _projectileDMG;
-        _projectileDMG = aux;
+        _projectile = _projectileList[0];
+        _audioSource.clip = _projectileList[0].GetComponent<AudioSource>().clip;
     }
 }

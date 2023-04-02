@@ -223,7 +223,10 @@ MonoBehaviour:
   maxDownForce: 4
   fall: 0
   _projectile: {fileID: 1281261110121666342, guid: ca1e33e5a72750c4283895d8131f0248, type: 3}
-  _projectileDMG: {fileID: 4283923986778395759, guid: a100c56dffc88894b9a3279aec48be26, type: 3}
+  _projectileList:
+  - {fileID: 1281261110121666342, guid: ca1e33e5a72750c4283895d8131f0248, type: 3}
+  - {fileID: 4283923986778395759, guid: a100c56dffc88894b9a3279aec48be26, type: 3}
+  - {fileID: 8684971188838083276, guid: 8d0c6497d47a85042bb056617192e66b, type: 3}
   firePoint: {fileID: 2491631119905368560}
   cooldown: 0
   timer: 0.5
