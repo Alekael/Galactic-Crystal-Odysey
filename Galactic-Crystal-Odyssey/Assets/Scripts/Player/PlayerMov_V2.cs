@@ -110,9 +110,9 @@ public class PlayerMov_V2 : MonoBehaviour
     }
 
     public void UpdateHealth(int dmg){
-        if(dmg < 0){
+        /*if(dmg < 0){
             _renderer.color = Color.red;
-        }
+        }*/
         lives = lives + dmg;
         GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
         //Debug.Log("lives updated: " + lives);

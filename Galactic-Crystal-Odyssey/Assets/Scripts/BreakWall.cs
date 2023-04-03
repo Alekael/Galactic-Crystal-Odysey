@@ -15,12 +15,12 @@ public class BreakWall : MonoBehaviour
 
         if(wallHP <= 0){
             Destroy(gameObject);
-            Debug.Log("wall break");
+            //Debug.Log("wall break");
 
         }
         if(wallHP < 2){
             gameObject.GetComponent<SpriteRenderer>().sprite = texture;
-            Debug.Log(wallHP);
+            //Debug.Log(wallHP);
         }
         
     }
