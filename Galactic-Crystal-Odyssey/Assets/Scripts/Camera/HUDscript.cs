@@ -15,7 +15,7 @@ public class HUDscript : MonoBehaviour
     void Start(){
         health = GameObject.FindWithTag("Player").GetComponent<PlayerMov_V2>().getLives();
         numOfHearts = health;
-        Debug.Log(health);
+        //Debug.Log(health);
 
         
         for (int i = 0; i < hearts.Length; i++){

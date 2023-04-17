@@ -10,6 +10,7 @@ public class Item : ScriptableObject
     public Sprite sprite;
     public int quantity;
     public bool stackable;
-    public enum ItemType {BOOSTER, HEALTH};
+    public enum ItemType {DAMAGE, SPEED, HEALTH};
     public ItemType itemType;
+    public int id;
 }

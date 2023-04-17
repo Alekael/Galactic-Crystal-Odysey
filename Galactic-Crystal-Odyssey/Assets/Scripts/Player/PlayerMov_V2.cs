@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerMov_V2 : MonoBehaviour
 {
 
@@ -11,13 +12,16 @@ public class PlayerMov_V2 : MonoBehaviour
     private Animator _anim;
     private BoxCollider2D _box;
     public float jumpForce = 10.0f;
+    public float baseDownForce = 2f;
+    public float downForce = 4f;
+    public float maxDownForce = 4f;
     public bool fall= false;
-    public bool shooting = false;
     public GameObject _projectile;
+    public List<GameObject> _projectileList;
     public Transform firePoint;
-    private float cooldown = 0f;
+    public float cooldown = 0f;
     public float timer = 0.5f;
-    private AudioSource _audioSorce;
+    private AudioSource _audioSource;
     private SpriteRenderer _renderer;
     public int lives = 5;
 
@@ -28,7 +32,7 @@ public class PlayerMov_V2 : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _box = GetComponent<BoxCollider2D>();
-        _audioSorce = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         _renderer = GetComponent<SpriteRenderer>();
         firePoint = transform.Find("firePoint");
 
@@ -37,6 +41,7 @@ public class PlayerMov_V2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float deltaX = Input.GetAxis("Horizontal") * speed;
     
         if(!Mathf.Approximately(deltaX,0f)){
@@ -47,28 +52,32 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
         
-        _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : 2.0f;
+        _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : baseDownForce;
 
+        if(_body.velocity.y < 0 && baseDownForce < maxDownForce){ baseDownForce += downForce * Time.deltaTime; /*print(baseDownForce);*/ } 
+        else { baseDownForce = 2f;}
+
+        
         if (grounded && Input.GetKeyDown("w")) {
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-        
+             
         if(_body.velocity.y < 0){
             _anim.SetBool("isFalling", true);
         }else { _anim.SetBool("isFalling", false);}
+
         _anim.SetBool("isGrounded", grounded);
         
         if(Input.GetKey("space")){
             _anim.SetBool("isShooting", true);
-            print("space key was pressed");
+            //print("space key was pressed");
             if(cooldown <= 0){
                 Shoot();
-                cooldown = timer;
             }
             cooldown -= Time.deltaTime;
+        }else {_anim.SetBool("isShooting", false); if(cooldown > 0f){ cooldown -= Time.deltaTime;} else{cooldown = 0f;}}
+        
 
-
-        }else {_anim.SetBool("isShooting", false); cooldown = 0.5f;}
 
         if(lives <= 0){
             SceneManager.LoadScene("Game Over");
@@ -79,7 +88,8 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector3 max = _box.bounds.max;
         Vector3 min = _box.bounds.min;
         Vector2 corner1 = new Vector2(max.x - .1f, min.y - .1f);
-        Vector2 corner2 = new Vector2(min.x + .1f, min.y - .2f);
+        Vector2 corner2 = new Vector2(min.x + .1f, min.y - .1f);
+
         return (corner1, corner2);
     }
 
@@ -87,13 +97,16 @@ public class PlayerMov_V2 : MonoBehaviour
         get {
             var (corner1, corner2) = getGroundCheckCorners();
             Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
+
             return (hit != null);
         }
     }
 
     void Shoot(){
-        if(_audioSorce != null) _audioSorce.Play();
-        Instantiate(_projectile, firePoint.position, firePoint.rotation);
+        //print("shoot");
+        if(_audioSource != null) _audioSource.Play();
+        Instantiate(_projectile, firePoint.position, firePoint.rotation);        
+        cooldown = timer;
     }
 
     public void UpdateHealth(int dmg){
@@ -102,22 +115,56 @@ public class PlayerMov_V2 : MonoBehaviour
         }*/
         lives = lives + dmg;
         GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
-        Debug.Log("lives updated: " + lives);
+        //Debug.Log("lives updated: " + lives);
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("CanBePickedUp") && lives < 5) {
+        if (other.CompareTag("CanBePickedUp")) {
             Item item = other.gameObject.GetComponent<Consumable>().item;
-            if(item != null){                
-                UpdateHealth(item.quantity);
-                other.gameObject.SetActive(false);
+            if(item != null){
+                switch(item.itemType){ 
+                    case Item.ItemType.HEALTH: 
+                        if(lives < 5){          
+                            UpdateHealth(item.quantity);
+                            other.gameObject.SetActive(false);
+                        }break;  
+
+                    case Item.ItemType.DAMAGE:
+                        ProjectileSwap(item.quantity, item.id);
+                        other.gameObject.SetActive(false); 
+                        break;
+
+                    case Item.ItemType.SPEED:
+                        ProjectileSwap(item.quantity, item.id);
+                        other.gameObject.SetActive(false); 
+                        break;            
+                }
             }
         }
     }
-
     public int getLives(){
         return lives;
     }
 
+    void OnDrawGizmosSelected(){
+        Vector3 max = _box.bounds.max;
+        Vector3 min = _box.bounds.min;
+        Vector2 corner1 = new Vector2(max.x - .1f, min.y - 0.1f);
+        Vector2 corner2 = new Vector2(min.x + .1f, min.y - 0.1f);
 
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(corner1, corner2);
+    }
+
+    void ProjectileSwap(int countdown, int pos){    
+        _projectile = _projectileList[pos];
+        _audioSource.clip = _projectileList[pos].GetComponent<AudioSource>().clip;
+        StartCoroutine(DamageBoostCountdown(countdown));
+    }
+
+    IEnumerator DamageBoostCountdown(int countdown){
+        yield return new WaitForSeconds(countdown);
+        _projectile = _projectileList[0];
+        _audioSource.clip = _projectileList[0].GetComponent<AudioSource>().clip;
+    }
 }

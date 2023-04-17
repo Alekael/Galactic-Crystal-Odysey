@@ -5,19 +5,27 @@ using UnityEngine;
 public class BreakWall : MonoBehaviour
 {
     public Sprite texture;
-    public int i = 0;
+    public int wallHP = 2;
 
     private void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.tag == "Bullet" && i >= 1){
+        
+        if(col.gameObject.tag == "Bullet"){
+            WallHealth(col.gameObject.GetComponent<Bullet>().damage);
+        }
+
+        if(wallHP <= 0){
             Destroy(gameObject);
-            Debug.Log("wall break");
+            //Debug.Log("wall break");
 
         }
-        if(col.gameObject.tag == "Bullet" && i < 1){
+        if(wallHP < 2){
             gameObject.GetComponent<SpriteRenderer>().sprite = texture;
-            i++;
-            Debug.Log(i);
+            //Debug.Log(wallHP);
         }
         
+    }
+
+    private void WallHealth(int dmg){
+        wallHP -= dmg;
     }       
 }
