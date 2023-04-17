@@ -31,10 +31,14 @@ public class flyEye : Enemy {
         Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
         if (sleeping || player == null) return;
         if(heading.sqrMagnitude < maxRange/2 * maxRange/2) {
+            anim.ResetTrigger("Fly");
+            anim.SetTrigger("Hit");
             rb2d.velocity = direction * 0;
             return;
             }
             rb2d.velocity = direction * speed;
+            anim.ResetTrigger("Hit");
+            anim.SetTrigger("Fly");
             
             
           
