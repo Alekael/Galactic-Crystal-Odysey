@@ -36,6 +36,7 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D col){
+        Debug.Log("Disparo en collision");
         Instantiate(_bulletDestroy, transform.position, transform.rotation);
         Destroy(gameObject);
         //Debug.Log("bulletDestroy");
@@ -45,9 +46,20 @@ public class Bullet : MonoBehaviour
        
     
     void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("TriggerEnter player");
+        if (damageOnlyToTag=="Player" && other.CompareTag(damageOnlyToTag)){
+            Debug.Log("Daño recibido");
+            var player = other.gameObject.GetComponent<PlayerMov_V2>();
+            player.UpdateHealth(damage);
+            Die();
+            return;
+        }
+        
         if (damageOnlyToTag == "" || other.CompareTag(damageOnlyToTag)) {
+            
             GameEntity hit = other.gameObject.GetComponentInParent<GameEntity>();
              if (hit != null) {
+                
                  hit.TakeDamage(damage);
             }
         

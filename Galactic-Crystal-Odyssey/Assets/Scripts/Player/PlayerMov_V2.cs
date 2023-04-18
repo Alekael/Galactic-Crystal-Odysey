@@ -115,7 +115,7 @@ public class PlayerMov_V2 : MonoBehaviour
         }*/
         lives = lives + dmg;
         GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
-        //Debug.Log("lives updated: " + lives);
+        Debug.Log("lives updated: " + lives);
     }
 
     void OnTriggerEnter2D(Collider2D other){

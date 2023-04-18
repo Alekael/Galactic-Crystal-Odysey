@@ -28,15 +28,7 @@ public abstract class Enemy : MonoBehaviour {
         lifetime.OnHitEvent -= OnHit;
         lifetime.OnDieEvent -= OnDie;
     }
-    void Atacks(){
-        var heading = this.transform.position - Atacking.gameObject.transform.position;
-        if (Atacking.CompareTag("Player") && !sleeping && heading.sqrMagnitude < maxRange * maxRange) {
-            var player = Atacking.gameObject.GetComponent<PlayerMov_V2>();
-            player.UpdateHealth(atDmg);
-            }
-
-
-    }
+    
     void OnTriggerEnter2D(Collider2D other) {
 
         
