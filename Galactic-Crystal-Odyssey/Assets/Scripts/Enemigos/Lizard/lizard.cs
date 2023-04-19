@@ -39,6 +39,7 @@ private GameObject player;
         }*/
 
     void Update() {
+        player = GameObject.FindGameObjectWithTag("Player");
         var heading = gameObject.transform.position - player.transform.position;
         Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
         if (sleeping || player == null) return;
