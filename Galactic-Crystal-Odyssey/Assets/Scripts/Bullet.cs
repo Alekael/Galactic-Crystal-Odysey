@@ -49,9 +49,9 @@ public class Bullet : MonoBehaviour
         Debug.Log("TriggerEnter player");
         if (damageOnlyToTag=="Player" && other.CompareTag(damageOnlyToTag)){
             Debug.Log("Daño recibido");
+            Die();
             var player = other.gameObject.GetComponent<PlayerMov_V2>();
             player.UpdateHealth(damage);
-            Die();
             return;
         }
         

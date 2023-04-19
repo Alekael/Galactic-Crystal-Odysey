@@ -83,8 +83,8 @@ private GameObject player;
 
 public void Shoot() {
 ShootWave(1, Random.Range(100, 110), Random.Range(190, 210));
-StartCoroutine(WaitAndShootWave(0.2f, 1, Random.Range(100, 110), Random.Range(150, 170)));
-StartCoroutine(WaitAndShootWave(0.4f, 1, Random.Range(140, 160), Random.Range(180, 220)));
+/*StartCoroutine(WaitAndShootWave(0.2f, 1, Random.Range(100, 110), Random.Range(150, 170)));
+StartCoroutine(WaitAndShootWave(0.4f, 1, Random.Range(140, 160), Random.Range(180, 220)));*/
 }
 
 IEnumerator WaitAndShootWave(float delay, int numBullets, float minAngle, float maxAngle) {
