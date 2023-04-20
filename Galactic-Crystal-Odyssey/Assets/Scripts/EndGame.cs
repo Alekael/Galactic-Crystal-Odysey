@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
+
 
 public class EndGame : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class EndGame : MonoBehaviour
     IEnumerator waiter()
     {
         yield return new WaitForSeconds(4);
-        EditorApplication.isPlaying = false; 
+        SceneManager.LoadScene("MainMenu");
+
     }
 }
