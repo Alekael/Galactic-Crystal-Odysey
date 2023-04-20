@@ -25,6 +25,8 @@ public class GameEntity : MonoBehaviour {
     public void TakeDamage(int damage) {
         if (!enabled) return;
             hitpoints.hitPoints -= damage;
+            StartCoroutine(FlickerCharacter());
+
         if (hitpoints.hitPoints <= 0) {
             hitpoints.hitPoints = 0;
             Die();
@@ -34,6 +36,13 @@ public class GameEntity : MonoBehaviour {
             }
         }
     }
+    public virtual IEnumerator FlickerCharacter() {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        sr.color = Color.white;
+    }
+
     public void Die() {
         if (OnDieEvent != null) {
             OnDieEvent();
