@@ -121,7 +121,7 @@ MonoBehaviour:
   point: {fileID: 0}
   timer: 5
   _bulletDestroy: {fileID: 4624653611659083011, guid: 46f03d39d6f51a842a0b54a4b3fb15b7, type: 3}
-  damage: 2
+  damage: 3
   damageOnlyToTag: Enemy
 --- !u!50 &-9109094250403879562
 Rigidbody2D:

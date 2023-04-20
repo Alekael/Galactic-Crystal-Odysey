@@ -13,6 +13,7 @@ public class PlayerMov_V2 : MonoBehaviour
     private BoxCollider2D _box;
     public float jumpForce = 10.0f;
     public float baseDownForce = 2f;
+    private float saveBase;
     public float downForce = 4f;
     public float maxDownForce = 4f;
     public bool fall= false;
@@ -35,6 +36,7 @@ public class PlayerMov_V2 : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _renderer = GetComponent<SpriteRenderer>();
         firePoint = transform.Find("firePoint");
+        saveBase = baseDownForce;
 
     }
 
@@ -55,7 +57,7 @@ public class PlayerMov_V2 : MonoBehaviour
         _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : baseDownForce;
 
         if(_body.velocity.y < 0 && baseDownForce < maxDownForce){ baseDownForce += downForce * Time.deltaTime; /*print(baseDownForce);*/ } 
-        else { baseDownForce = 2f;}
+        else { baseDownForce = saveBase;}
 
         
         if (grounded && Input.GetKeyDown("w")) {
