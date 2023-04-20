@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerMovementTest.unity
     guid: 93e10e15132ed8d4db4b9f1a28804ebd
+  - enabled: 1
+    path: Assets/Scenes/SegundoNivel.unity
+    guid: e137b9437476fb04b9338924f053348e
   m_configObjects: {}

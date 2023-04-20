@@ -23,7 +23,7 @@ public class PlayerMov_V2 : MonoBehaviour
     public float cooldown = 0f;
     public float timer = 0.5f;
     public AudioSource _audioSource;
-    public AudioSource _runSound;
+    public List<AudioSource> _sounds;
     private SpriteRenderer _renderer;
     public int lives = 5;
 
@@ -55,10 +55,10 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
 
-        if (Mathf.Abs(_body.velocity.x) > 2f && !_runSound.isPlaying && grounded) {
-            _runSound.Play();
+        if (Mathf.Abs(_body.velocity.x) > 2f && !_sounds[0].isPlaying && grounded) {
+            _sounds[0].Play();
         }
-        if(Mathf.Abs(_body.velocity.x) < 2f && _runSound.isPlaying) { _runSound.Stop();}
+        if(Mathf.Abs(_body.velocity.x) < 2f && _sounds[0].isPlaying) { _sounds[0].Stop();}
 
         _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : baseDownForce;
 
@@ -135,17 +135,20 @@ public class PlayerMov_V2 : MonoBehaviour
             if(item != null){
                 switch(item.itemType){ 
                     case Item.ItemType.HEALTH: 
-                        if(lives < 5){          
+                        if(lives < 5){    
+                            _sounds[1].Play();      
                             UpdateHealth(item.quantity);
                             other.gameObject.SetActive(false);
                         }break;  
 
                     case Item.ItemType.DAMAGE:
+                        _sounds[2].Play();
                         ProjectileSwap(item.quantity, item.id);
                         other.gameObject.SetActive(false); 
                         break;
 
                     case Item.ItemType.SPEED:
+                        _sounds[2].Play();
                         ProjectileSwap(item.quantity, item.id);
                         other.gameObject.SetActive(false); 
                         break;            
