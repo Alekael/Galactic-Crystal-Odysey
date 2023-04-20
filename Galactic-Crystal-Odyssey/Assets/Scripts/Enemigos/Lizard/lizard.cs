@@ -44,14 +44,14 @@ private GameObject player;
         Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
         if (sleeping || player == null) return;
         if(heading.sqrMagnitude < maxRange/2 * maxRange/2) {
-            anim.ResetTrigger("Fly");
-            anim.SetTrigger("Hit");
+            anim.ResetTrigger("Walk");
+            anim.SetTrigger("Detected");
             rb2d.velocity = direction * 0;
             return;
             }
             rb2d.velocity = direction * speed;
-            anim.ResetTrigger("Hit");
-            anim.SetTrigger("Fly");
+            anim.ResetTrigger("Detected");
+            anim.SetTrigger("Walk");
             
             
           
