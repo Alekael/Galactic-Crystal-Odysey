@@ -8,11 +8,13 @@ public class levelSelect : MonoBehaviour
 {
     public List<GameObject> planets;
     private int index = 0;
+    private AudioSource _audio;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.transform.position = planets[index].transform.position;
+        _audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class levelSelect : MonoBehaviour
             else{
                 index++;
             }
+            _audio.Play();
             gameObject.transform.position = planets[index].transform.position;
         }
 
@@ -35,6 +38,7 @@ public class levelSelect : MonoBehaviour
             else{
                 index--;
             }
+            _audio.Play();
             gameObject.transform.position = planets[index].transform.position;
         }
 
