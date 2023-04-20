@@ -122,6 +122,9 @@ public class PlayerMov_V2 : MonoBehaviour
             _renderer.color = Color.red;
         }*/
         lives = lives + dmg;
+        if(dmg < 0){
+            StartCoroutine(DamageEffect());
+        }
         GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
         Debug.Log("lives updated: " + lives);
     }
@@ -174,6 +177,12 @@ public class PlayerMov_V2 : MonoBehaviour
         yield return new WaitForSeconds(countdown);
         _projectile = _projectileList[0];
         _audioSource.clip = _projectileList[0].GetComponent<AudioSource>().clip;
+    }
+
+    IEnumerator DamageEffect(){
+        _renderer.color = Color.red;
+        yield return new WaitForSeconds(1);
+        _renderer.color = Color.white;
     }
 
 }
