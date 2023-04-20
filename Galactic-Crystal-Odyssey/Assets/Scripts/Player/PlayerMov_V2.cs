@@ -22,7 +22,8 @@ public class PlayerMov_V2 : MonoBehaviour
     public Transform firePoint;
     public float cooldown = 0f;
     public float timer = 0.5f;
-    private AudioSource _audioSource;
+    public AudioSource _audioSource;
+    public AudioSource _runSound;
     private SpriteRenderer _renderer;
     public int lives = 5;
 
@@ -33,7 +34,7 @@ public class PlayerMov_V2 : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _box = GetComponent<BoxCollider2D>();
-        _audioSource = GetComponent<AudioSource>();
+        //_audioSource = GetComponent<AudioSource>();
         _renderer = GetComponent<SpriteRenderer>();
         firePoint = transform.Find("firePoint");
         saveBase = baseDownForce;
@@ -53,7 +54,12 @@ public class PlayerMov_V2 : MonoBehaviour
 
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
-        
+
+        if (Mathf.Abs(_body.velocity.x) > 2f && !_runSound.isPlaying && grounded) {
+            _runSound.Play();
+        }
+        if(Mathf.Abs(_body.velocity.x) < 2f && _runSound.isPlaying) { _runSound.Stop();}
+
         _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : baseDownForce;
 
         if(_body.velocity.y < 0 && baseDownForce < maxDownForce){ baseDownForce += downForce * Time.deltaTime; /*print(baseDownForce);*/ } 
@@ -116,6 +122,9 @@ public class PlayerMov_V2 : MonoBehaviour
             _renderer.color = Color.red;
         }*/
         lives = lives + dmg;
+        if(dmg < 0){
+            StartCoroutine(DamageEffect());
+        }
         GameObject.Find("HUD").GetComponent<HUDscript>().updateHUD(lives);
         Debug.Log("lives updated: " + lives);
     }
@@ -169,4 +178,11 @@ public class PlayerMov_V2 : MonoBehaviour
         _projectile = _projectileList[0];
         _audioSource.clip = _projectileList[0].GetComponent<AudioSource>().clip;
     }
+
+    IEnumerator DamageEffect(){
+        _renderer.color = Color.red;
+        yield return new WaitForSeconds(1);
+        _renderer.color = Color.white;
+    }
+
 }
