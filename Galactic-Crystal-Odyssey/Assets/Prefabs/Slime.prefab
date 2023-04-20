@@ -182,7 +182,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!114 &3171790160961831793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,5 +211,5 @@ MonoBehaviour:
   collisionDamage: 0
   atDmg: -1
   Atacking: {fileID: 0}
-  maxRange: 1.5
+  maxRange: 3
   speed: 1

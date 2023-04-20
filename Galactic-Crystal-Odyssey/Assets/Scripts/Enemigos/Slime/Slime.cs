@@ -42,6 +42,7 @@ public class Slime : Enemy {
         Vector3 direction = Vector3.Normalize(player.transform.position - transform.position);
         if (sleeping || player == null) return;
         if(heading.sqrMagnitude < maxRange/2 * maxRange/2) {
+            Debug.Log("Entro a rango");
             anim.ResetTrigger("Move");
             anim.SetTrigger("Hit");
             rb2d.velocity = direction * 0;
