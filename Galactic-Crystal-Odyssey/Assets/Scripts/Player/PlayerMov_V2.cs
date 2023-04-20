@@ -67,6 +67,7 @@ public class PlayerMov_V2 : MonoBehaviour
 
         
         if (grounded && Input.GetKeyDown("w")) {
+            _sounds[3].Play();
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
              
