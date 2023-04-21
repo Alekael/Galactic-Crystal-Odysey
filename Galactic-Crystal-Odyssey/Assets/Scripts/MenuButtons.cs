@@ -28,7 +28,7 @@ public class MenuButtons : MonoBehaviour
     }
 
     void Salir(){
-        EditorApplication.isPlaying = false;
-        //Application.Quit();
+        //EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 }
