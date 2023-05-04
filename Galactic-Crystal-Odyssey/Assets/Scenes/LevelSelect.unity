@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 621501362}
   - component: {fileID: 621501361}
   m_Layer: 0
-  m_Name: Game Over
+  m_Name: BossFinal
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
