@@ -5,15 +5,14 @@ using UnityEngine;
 public class BossProjectils : MonoBehaviour
 {
     public GameObject _projectile;
-    public Transform firePoint;
-    float timeoutDuration = 1;
-    float timeout = 1;
+    public GameObject firepoint;
+    float timeoutDuration = 3;
+    float timeout = 3;
 
     // Start is called before the first frame update
     void Start()
     {
-        firePoint = transform.Find("bossfirePoint");
-        Instantiate(_projectile, firePoint.position, firePoint.rotation);
+        Instantiate(_projectile,firepoint.transform.position,firepoint.transform.rotation);
     }
 
     // Update is called once per frame
@@ -24,7 +23,7 @@ public class BossProjectils : MonoBehaviour
             timeout -= Time.deltaTime;
             return;
         }
-        Instantiate(_projectile, firePoint.position, firePoint.rotation);
+        Instantiate(_projectile,firepoint.transform.position,firepoint.transform.rotation);
         timeout = timeoutDuration;
     }
 }
