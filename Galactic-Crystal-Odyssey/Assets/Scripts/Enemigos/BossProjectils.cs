@@ -6,8 +6,8 @@ public class BossProjectils : MonoBehaviour
 {
     public GameObject _projectile;
     public GameObject firepoint;
-    float timeoutDuration = 3;
-    float timeout = 3;
+    public float timeoutDuration = 3;
+    public float timeout = 3;
 
     // Start is called before the first frame update
     void Start()
