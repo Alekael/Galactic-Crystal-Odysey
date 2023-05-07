@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2041054333574261907}
   - component: {fileID: 4160549743168350469}
   m_Layer: 3
-  m_Name: bossfirepoint
+  m_Name: LeftFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
