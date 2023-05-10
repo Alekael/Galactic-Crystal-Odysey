@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6670098837395371188, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7114382130827824711, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
       propertyPath: direction
       value: -1
@@ -61,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7946599421676392494, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
