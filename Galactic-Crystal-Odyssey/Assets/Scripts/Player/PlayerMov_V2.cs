@@ -55,10 +55,10 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
 
-        if (Mathf.Abs(_body.velocity.x) > 2f && !_sounds[0].isPlaying && grounded && !PauseMenu.isPaused) {
+        /*if (Mathf.Abs(_body.velocity.x) > 2f && !_sounds[0].isPlaying && grounded && !PauseMenu.isPaused) {
             _sounds[0].Play();
-        }
-        if(Mathf.Abs(_body.velocity.x) < 2f && _sounds[0].isPlaying) { _sounds[0].Stop();}
+        }*/
+        //if(Mathf.Abs(_body.velocity.x) < 2f && _sounds[0].isPlaying) { _sounds[0].Stop();}
 
         _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0.0f) &&  Mathf.Abs(_body.velocity.y) < 0.1f) ? 0.0f : baseDownForce;
 
