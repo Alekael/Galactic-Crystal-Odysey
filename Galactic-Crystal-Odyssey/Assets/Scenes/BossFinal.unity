@@ -6776,7 +6776,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: f0c56d367ab98fc448cdf20214ad5983, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1f2ad53bacc245642854dbdc8ea71a9b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -41843,13 +41843,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045517767}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.16, y: 44.08, z: -0.5610666}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.1150002, y: 0.22500038, z: -0.2805333}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_Father: {fileID: 1782167255}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1102154040
 PrefabInstance:
@@ -43852,6 +43852,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7136135702552082468, guid: 493a28e715fec69458174deea6156f03, type: 3}
   m_PrefabInstance: {fileID: 2064685174}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1782167255 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1171872766797878226, guid: aad5b984ae22e3946a392c41a9040793, type: 3}
+  m_PrefabInstance: {fileID: 1455115270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1793544227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44022,7 +44027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a88cf26b8f18947aa9cbbd7ae55804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1994229771}
+  camara: {fileID: 1994229771}
   fondo: {fileID: 1313677623}
   BossMusic: {fileID: 552750568}
 --- !u!1 &1919755046
