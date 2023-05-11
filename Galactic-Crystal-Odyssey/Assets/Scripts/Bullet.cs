@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D col){
-        Debug.Log("Disparo en collision");
+        
         Instantiate(_bulletDestroy, transform.position, transform.rotation);
         Destroy(gameObject);
         //Debug.Log("bulletDestroy");
@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
        
     
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("TriggerEnter player");
+        
         if (damageOnlyToTag=="Player" && other.CompareTag(damageOnlyToTag)){
             Debug.Log("Daño recibido");
             Die();

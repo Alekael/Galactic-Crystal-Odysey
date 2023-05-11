@@ -28,6 +28,7 @@ public class GameEntity : MonoBehaviour {
             StartCoroutine(FlickerCharacter());
 
         if (hitpoints.hitPoints <= 0) {
+             Debug.Log("Muere boss");
             hitpoints.hitPoints = 0;
             Die();
         } else {
@@ -45,6 +46,7 @@ public class GameEntity : MonoBehaviour {
 
     public void Die() {
         if (OnDieEvent != null) {
+            Debug.Log("Muere game entity");
             OnDieEvent();
         }
         enabled = false;
