@@ -123,8 +123,8 @@ MonoBehaviour:
   direction: 1
   timer: 10
   _bulletDestroy: {fileID: 4624653611659083011, guid: 46f03d39d6f51a842a0b54a4b3fb15b7, type: 3}
-  damage: 1
-  damageOnlyToTag: 
+  damage: -1
+  damageOnlyToTag: Player
 --- !u!58 &6670098837395371188
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

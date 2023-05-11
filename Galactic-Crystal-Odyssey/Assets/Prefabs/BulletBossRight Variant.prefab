@@ -7,13 +7,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2775868936416164200, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6670098837395371188, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670098837395371188, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
+      propertyPath: m_UsedByEffector
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114382130827824711, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
+      propertyPath: damage
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7114382130827824711, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
       propertyPath: direction
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114382130827824711, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
+      propertyPath: damageOnlyToTag
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7409492815433565194, guid: e08e259ce7e376a4e903897d2fbed739, type: 3}
       propertyPath: m_RootOrder

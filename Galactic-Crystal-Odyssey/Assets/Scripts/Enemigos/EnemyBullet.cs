@@ -34,4 +34,23 @@ public class EnemyBullet : MonoBehaviour
         Instantiate(_bulletDestroy, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+    void OnTriggerEnter2D(Collider2D other) {
+        if (damageOnlyToTag=="Player" && other.CompareTag(damageOnlyToTag)){
+            Die();
+            var player = other.gameObject.GetComponent<PlayerMov_V2>();
+            player.UpdateHealth(damage);
+            return;
+        }
+        
+        if (damageOnlyToTag == "" || other.CompareTag(damageOnlyToTag)) {
+            
+            GameEntity hit = other.gameObject.GetComponentInParent<GameEntity>();
+             if (hit != null) {
+                
+                 hit.TakeDamage(damage);
+            }
+        
+        }
+       Die(); 
+    }
 }
