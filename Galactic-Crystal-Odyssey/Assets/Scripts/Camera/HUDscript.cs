@@ -11,16 +11,19 @@ public class HUDscript : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    //Color colorSemitransparente = new Color(1f, 1f, 1f, 0.5f); // Crear un nuevo objeto de color semitransparente con un valor de alfa de 0.5
+    Color colorOpaco = new Color(1f, 1f, 1f, 1f); // Crear un nuevo objeto de color semitransparente con un valor de alfa de 0.5
+
 
     void Start(){
         health = GameObject.FindWithTag("Player").GetComponent<PlayerMov_V2>().getLives();
         numOfHearts = health;
         //Debug.Log(health);
-
         
         for (int i = 0; i < hearts.Length; i++){
             if(i< numOfHearts){
                 hearts[i].enabled = true;
+                hearts[i].material.color = colorOpaco;
             } else {
                 hearts[i].enabled = false;
             }
@@ -36,9 +39,14 @@ public class HUDscript : MonoBehaviour
 
         for (int i = 0; i < hearts.Length; i++){
             if(i < health){
+                hearts[i].enabled = true;
                 hearts[i].sprite = fullHeart;
+                hearts[i].material.color = colorOpaco;
             } else {
-                hearts[i].sprite = emptyHeart;
+                hearts[i].enabled = false;
+                //hearts[i].sprite = emptyHeart;
+                //hearts[i].material.color = colorSemitransparente;
+            
             }
         }
     }

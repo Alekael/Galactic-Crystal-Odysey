@@ -55,7 +55,7 @@ public class PlayerMov_V2 : MonoBehaviour
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
 
-        if (Mathf.Abs(_body.velocity.x) > 2f && !_sounds[0].isPlaying && grounded) {
+        if (Mathf.Abs(_body.velocity.x) > 2f && !_sounds[0].isPlaying && grounded && !PauseMenu.isPaused) {
             _sounds[0].Play();
         }
         if(Mathf.Abs(_body.velocity.x) < 2f && _sounds[0].isPlaying) { _sounds[0].Stop();}
@@ -66,7 +66,7 @@ public class PlayerMov_V2 : MonoBehaviour
         else { baseDownForce = saveBase;}
 
         
-        if (grounded && Input.GetKeyDown("w")) {
+        if (grounded && Input.GetKeyDown("w") && !PauseMenu.isPaused) {
             _sounds[3].Play();
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -77,7 +77,7 @@ public class PlayerMov_V2 : MonoBehaviour
 
         _anim.SetBool("isGrounded", grounded);
         
-        if(Input.GetKey("space")){
+        if(Input.GetKey("space") && !PauseMenu.isPaused){
             _anim.SetBool("isShooting", true);
             //print("space key was pressed");
             if(cooldown <= 0){
