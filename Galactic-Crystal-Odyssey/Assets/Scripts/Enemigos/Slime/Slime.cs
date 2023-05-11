@@ -48,6 +48,7 @@ public class Slime : Enemy {
             rb2d.velocity = direction * 0;
             return;
             }
+            direction.y=0;
             rb2d.velocity = direction * speed;
             anim.ResetTrigger("Hit");
             anim.SetTrigger("Move");

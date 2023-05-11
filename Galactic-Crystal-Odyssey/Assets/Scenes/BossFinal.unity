@@ -44424,11 +44424,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7900666003429855467, guid: d7935f4754c548242943ae85458d2e86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.03
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7900666003429855467, guid: d7935f4754c548242943ae85458d2e86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 36.38
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 7900666003429855467, guid: d7935f4754c548242943ae85458d2e86, type: 3}
       propertyPath: m_LocalPosition.z
@@ -44693,6 +44693,14 @@ PrefabInstance:
     - target: {fileID: 1341844993080546830, guid: 2a7b9fce1c78d65408ba4084bbd9184a, type: 3}
       propertyPath: Atacking
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341844993080546832, guid: 2a7b9fce1c78d65408ba4084bbd9184a, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341844993080546832, guid: 2a7b9fce1c78d65408ba4084bbd9184a, type: 3}
+      propertyPath: m_GravityScale
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2328815180144648401, guid: 2a7b9fce1c78d65408ba4084bbd9184a, type: 3}
       propertyPath: m_RootOrder

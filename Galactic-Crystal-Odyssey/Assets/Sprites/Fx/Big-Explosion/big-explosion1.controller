@@ -34,7 +34,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b4e79851cad83478ce253eaf8098c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnGameObject: {fileID: 0}
+  spawnGameObject: {fileID: 3980963831856272598, guid: 2f5cfdd60a95b214eadf05dfe922d70f, type: 3}
   exitTime: 1
 --- !u!1102 &9080091496757564736
 AnimatorState:
