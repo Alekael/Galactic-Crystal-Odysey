@@ -6776,7 +6776,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: f0c56d367ab98fc448cdf20214ad5983, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1f2ad53bacc245642854dbdc8ea71a9b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0.569
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -44030,6 +44030,7 @@ MonoBehaviour:
   camara: {fileID: 1994229771}
   fondo: {fileID: 1313677623}
   BossMusic: {fileID: 552750568}
+  yPos: 4.5
 --- !u!1 &1919755046
 GameObject:
   m_ObjectHideFlags: 0
@@ -44481,7 +44482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7900666003429855467, guid: d7935f4754c548242943ae85458d2e86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 36.38
+      value: 32.3
       objectReference: {fileID: 0}
     - target: {fileID: 7900666003429855467, guid: d7935f4754c548242943ae85458d2e86, type: 3}
       propertyPath: m_LocalPosition.z

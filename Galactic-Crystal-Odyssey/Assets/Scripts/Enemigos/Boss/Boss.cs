@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class Boss : Enemy
 {
@@ -46,7 +47,12 @@ public class Boss : Enemy
         protected override void OnDie() {
             Debug.Log("Animación muerte");
             
+            
             anim.SetTrigger("Die");
+            
+             
+    }
+    
 
-        }
+        
 }
