@@ -6,7 +6,11 @@ public class FinalBossTrigger : MonoBehaviour
 {
     public GameObject camera;
     public GameObject fondo;
-    // Start is called before the first frame update
+    public AudioSource BossMusic;
+
+
+    void Start(){
+    }
      private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             
@@ -15,6 +19,7 @@ public class FinalBossTrigger : MonoBehaviour
             camara.GetComponent<VerticalCamera>().statik = 1;
             Destroy(fondo);
 
+            BossMusic.Play();           
 
             Destroy(gameObject);
         }
