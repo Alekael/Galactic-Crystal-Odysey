@@ -35,7 +35,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnGameObject: {fileID: 3980963831856272598, guid: 2f5cfdd60a95b214eadf05dfe922d70f, type: 3}
-  exitTime: 1
+  exitTime: 0
 --- !u!1102 &9080091496757564736
 AnimatorState:
   serializedVersion: 6

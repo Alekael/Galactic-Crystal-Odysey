@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Victoria-cristal.unity
     guid: 55af813b6efee124b9e7e771055b8a43
+  - enabled: 1
+    path: Assets/Scenes/Final-Victory.unity
+    guid: 6fb23c3b0e6bb07438dbddf050cff185
   m_configObjects: {}
