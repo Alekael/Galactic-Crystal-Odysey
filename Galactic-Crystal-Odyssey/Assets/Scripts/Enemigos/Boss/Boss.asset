@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77377537504b0cc42a2c6a7dc3c5d283, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  hitPoints: 15
-  maxHitPoints: 15
-  initialHitPoints: 15
+  hitPoints: 200
+  maxHitPoints: 200
+  initialHitPoints: 200
