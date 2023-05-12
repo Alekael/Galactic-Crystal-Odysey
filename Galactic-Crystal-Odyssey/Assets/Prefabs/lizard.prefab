@@ -165,11 +165,11 @@ MonoBehaviour:
   collisionDamage: -1
   atDmg: 0
   Atacking: {fileID: 0}
-  maxRange: 10
+  maxRange: 15
   speed: 0
   _projectile: {fileID: 7167562176443074160, guid: 901202bc1b6d7e548aee14614c9c7630, type: 3}
   bulletSource: {fileID: 3467247958592428738}
-  bulletForce: 2
+  bulletForce: 2.5
 --- !u!95 &2074210997052400725
 Animator:
   serializedVersion: 4
