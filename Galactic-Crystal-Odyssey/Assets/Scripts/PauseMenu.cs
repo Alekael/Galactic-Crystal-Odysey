@@ -44,6 +44,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu(){
         Time.timeScale = 1f;
+        isPaused = false;
         PauseMenuUI.SetActive(false);
         SceneManager.LoadScene("MainMenu");
         Debug.Log("Loading Menu");
@@ -51,6 +52,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadLevels(){
         Time.timeScale = 1f;
+        isPaused = false;
         PauseMenuUI.SetActive(false);
         SceneManager.LoadScene("LevelSelect");
         Debug.Log("Loading Menu");
