@@ -8,6 +8,10 @@ public class FinalBossTrigger : MonoBehaviour
     public GameObject fondo;
     public AudioSource BossMusic;
     public float yPos = 7f;
+    public GameObject objBar;
+    public GameObject objPwrUP;
+    public GameObject objHLT;
+    public GameObject bossEnemySpawner;
 
     void Start(){
     }
@@ -18,7 +22,10 @@ public class FinalBossTrigger : MonoBehaviour
             camara.GetComponent<VerticalCamera>().statik = 1;
             camara.GetComponent<VerticalCamera>().enabled = false;
             Destroy(fondo);
-
+            objBar.SetActive(true);
+            objPwrUP.SetActive(true);
+            objHLT.SetActive(true);
+            bossEnemySpawner.SetActive(true);
             BossMusic.Play();           
 
             Destroy(gameObject);

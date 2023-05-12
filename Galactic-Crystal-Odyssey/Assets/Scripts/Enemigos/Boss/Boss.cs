@@ -20,9 +20,10 @@ public class Boss : Enemy
     
     private Animator anim;
     private SpriteRenderer _renderer;
-  
+    public HitPoints vida;
 
     protected override void OnWake() {
+
         Debug.Log("Despierta el boss");
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -53,6 +54,16 @@ public class Boss : Enemy
              
     }
     
+    /*public void Start(){
+        StartCoroutine(smallWait());
+    }
 
+    IEnumerator smallWait(){
+        yield return new WaitForSeconds(1);
+        vida = gameObject.GetComponent<GameEntity>().hitpoints;
+        Debug.Log("hitpoints saved");
+        GameObject.Find("BossHealth").GetComponent<BossHealthBar>().setHitPoints(vida);
+        Debug.Log("hitpoints sent");
+    }*/
         
 }

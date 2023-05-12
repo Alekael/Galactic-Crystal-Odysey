@@ -15,7 +15,14 @@ public class GameEntity : MonoBehaviour {
     protected virtual void Start() {
         hitpoints = Instantiate(hitpoints);
         hitpoints.hitPoints = hitpoints.initialHitPoints;
+        Debug.Log("hitpoints SET gameEntity");
     }
+
+
+    public HitPoints getHp(){
+        return hitpoints;
+    }
+
     public void Wake() {
         enabled = true;
         if (OnWakeEvent != null) {
