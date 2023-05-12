@@ -18,7 +18,7 @@ public class BossFinal : MonoBehaviour
     IEnumerator waiter()
     {
         yield return new WaitForSeconds(4);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("LevelSelect");
 
     }
 
